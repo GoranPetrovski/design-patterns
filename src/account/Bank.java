@@ -29,10 +29,14 @@ public class Bank {
         return account.withdrawingMoney(amount);
     }
 
+    /*Observer pattern*/
     public void attach(Account observer){
         accounts.add(observer);
     }
 
+    /*Observer pattern
+    * to notify all observers (accounts)
+    * */
     public void notifyAllObservers(){
         System.out.println("Size accounts = "+ accounts.size());
         for (Account observer : accounts) {

@@ -1,5 +1,9 @@
 package account;
 
+/*
+I know that Account can be interface or class, because I like to implement Observer pattern
+and I must to have proerties like Bank .. I decide to go with class in this case
+* */
 public abstract class Account {
     private String ownerIdentification;
     private double balance;

@@ -1,5 +1,6 @@
 package account;
 
+/*Decorator pattern*/
 public abstract class AccountDecorator extends Account{
     protected Account decoratedAccount;
 

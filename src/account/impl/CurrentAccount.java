@@ -4,6 +4,11 @@ import account.Account;
 import account.AccountHelper;
 import account.Bank;
 
+/*
+concreate class implementation for Account
+I am added different taxes for every class implementation
+ for reason to have different Account class implememntation
+* */
 public class CurrentAccount extends  Account {
     public static final double CURRENT_ACCOUNT_TAX = 25;
     AccountHelper accountHelper;
@@ -33,6 +38,7 @@ public class CurrentAccount extends  Account {
         return getBalance();
     }
 
+    /*This method is added to have Observer pattern */
     @Override
     public void update() {
         System.out.println("Balance of current amount was updated! and current value of balance is"+ getBalance());

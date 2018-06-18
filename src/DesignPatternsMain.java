@@ -11,7 +11,12 @@ public class DesignPatternsMain {
 
     public static void main(String[] args){
 
-        /* observer design pattern. In this case
+        /* I am implemented 3 design patterns:
+        Observer
+        Factory
+        Decorator
+
+        Observer design pattern. In this case
             Bank class represents Subject
             Account class represent Observer
         * */

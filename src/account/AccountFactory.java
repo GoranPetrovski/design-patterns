@@ -11,11 +11,12 @@ public class AccountFactory {
         this.bank = bank;
     }
 
+    /*To implement factory pattern without exposing the creation logic to the client
+    * useing common interface*/
     public Account createAccount(AccountType accountType, double balance) {
         if (accountType == null) {
             return null;
         }
-
         switch (accountType) {
             case SAVING:
                 return new SavingsAccount(bank, balance);

@@ -4,7 +4,9 @@ import account.Account;
 import account.AccountDecorator;
 import account.AccountHelper;
 
-
+/*
+implement decorator pattern and add additional tax for each bank transacion
+* */
 public class CreditCardDecorator extends AccountDecorator {
 
     AccountHelper accountHelper = new AccountHelper();

@@ -4,6 +4,9 @@ import account.Account;
 import account.AccountHelper;
 import account.Bank;
 
+/*
+concreate class implementation for Account
+* */
 public class CreditCardAccount extends Account {
 
     public static final double CREDIT_CARD_TAX = 15;
