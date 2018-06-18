@@ -2,12 +2,17 @@ package account.impl;
 
 import account.Account;
 import account.AccountHelper;
-import account.BasicInfoAccount;
+import account.Bank;
 
-public class SavingsAccount extends BasicInfoAccount implements Account {
-    AccountHelper accountHelper = new AccountHelper();
-    public SavingsAccount(double balance){
+public class SavingsAccount extends  Account {
+    protected  AccountHelper accountHelper;
+
+    public SavingsAccount(Bank bank, double balance){
+        accountHelper = new AccountHelper();
+        this.bank = bank;
+        this.bank.attach(this);
         setBalance(balance);
+
     }
 
     @Override
@@ -26,5 +31,10 @@ public class SavingsAccount extends BasicInfoAccount implements Account {
     @Override
     public double checkBalance() {
         return getBalance();
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Balance of saving amount was updated! and current value of balance is"+ getBalance());
     }
 }

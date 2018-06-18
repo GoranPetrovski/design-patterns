@@ -2,14 +2,17 @@ package account.impl;
 
 import account.Account;
 import account.AccountHelper;
-import account.BasicInfoAccount;
+import account.Bank;
 
-public class CreditCardAccount extends BasicInfoAccount implements Account {
+public class CreditCardAccount extends Account {
 
     public static final double CREDIT_CARD_TAX = 15;
-    AccountHelper accountHelper = new AccountHelper();
+    AccountHelper accountHelper;
 
-    public CreditCardAccount(double balance){
+    public CreditCardAccount(Bank bank, double balance){
+        accountHelper = new AccountHelper();
+        this.bank = bank;
+        this.bank.attach(this);
         this.setBalance(balance);
     }
 
@@ -29,5 +32,10 @@ public class CreditCardAccount extends BasicInfoAccount implements Account {
     @Override
     public double checkBalance() {
         return getBalance();
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Balance of creadit card amount was updated! and current value of balance is: "+ getBalance());
     }
 }

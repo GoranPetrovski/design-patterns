@@ -1,6 +1,4 @@
-import account.Account;
-import account.AccountFactory;
-import account.AccountType;
+package account;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,24 +11,34 @@ public class Bank {
         accounts = new ArrayList<>();
     }
 
-    Account openBankAccount(AccountType accountType, double balance){
-        AccountFactory accountFactory = new AccountFactory();
+    public Account openBankAccount(AccountType accountType, double balance){
+        AccountFactory accountFactory = new AccountFactory(this);
         Account account = accountFactory.createAccount(accountType, balance);
-        accounts.add(account);
         return account;
     }
 
-    Account openBankAccount(Account account){
-        accounts.add(account);
-        return account;
-    }
 
-    double depositingMoney(Account account, double amount){
+    public double depositingMoney(Account account, double amount){
+        System.out.println("Bank deposit money === ");
+        notifyAllObservers();
         return account.depositingMoney(amount);
     }
 
-    double  withdrawingMoney(Account account, double amount){
+    public double  withdrawingMoney(Account account, double amount){
+        notifyAllObservers();
         return account.withdrawingMoney(amount);
+    }
+
+    public void attach(Account observer){
+        accounts.add(observer);
+    }
+
+    public void notifyAllObservers(){
+        System.out.println("Size accounts = "+ accounts.size());
+        for (Account observer : accounts) {
+            System.out.println("Account = "+observer.getBalance());
+            observer.update();
+        }
     }
 
     double checkingBalance(Account account){

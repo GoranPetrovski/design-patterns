@@ -2,13 +2,16 @@ package account.impl;
 
 import account.Account;
 import account.AccountHelper;
-import account.BasicInfoAccount;
+import account.Bank;
 
-public class CurrentAccount extends BasicInfoAccount implements Account {
+public class CurrentAccount extends  Account {
     public static final double CURRENT_ACCOUNT_TAX = 25;
-    AccountHelper accountHelper = new AccountHelper();
+    AccountHelper accountHelper;
 
-    public CurrentAccount(double balance){
+    public CurrentAccount(Bank bank, double balance){
+        accountHelper = new AccountHelper();
+        this.bank = bank;
+        this.bank.attach(this);
         setBalance(balance);
     }
 
@@ -28,5 +31,10 @@ public class CurrentAccount extends BasicInfoAccount implements Account {
     @Override
     public double checkBalance() {
         return getBalance();
+    }
+
+    @Override
+    public void update() {
+        System.out.println("Balance of current amount was updated! and current value of balance is"+ getBalance());
     }
 }

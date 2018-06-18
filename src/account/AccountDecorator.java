@@ -1,6 +1,6 @@
 package account;
 
-public abstract class AccountDecorator implements Account{
+public abstract class AccountDecorator extends Account{
     protected Account decoratedAccount;
 
     public AccountDecorator(Account decoratedAccount){
