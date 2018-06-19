@@ -15,7 +15,7 @@ public class CreditCardAccount extends Account {
     public CreditCardAccount(Bank bank, double balance){
         accountHelper = new AccountHelper();
         this.bank = bank;
-        this.bank.attach(this);
+        this.bank.registerObserver(this);
         this.setBalance(balance);
     }
 
@@ -38,7 +38,7 @@ public class CreditCardAccount extends Account {
     }
 
     @Override
-    public void update() {
+    public void inform() {
         System.out.println("Balance of creadit card amount was updated! and current value of balance is: "+ getBalance());
     }
 }

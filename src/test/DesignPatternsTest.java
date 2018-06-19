@@ -14,19 +14,19 @@ public class DesignPatternsTest {
 
     @Test(expected = RuntimeException.class)
     public final void whenWithdrawMoneyFromLowerBalanceThenExceptionIsThrown(){
-        Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 2000);
+        Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 2000, true);
         accountCreditCard.withdrawingMoney(5000);
     }
 
     @Test
     public final void whenCheckBalanceThenValidateBalance(){
-        Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 2000);
+        Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 2000, true);
         Assert.assertEquals(2000.0, accountCreditCard.checkBalance(), 0.0);
     }
 
     @Test
     public final void whenDepositingMoneyThen (){
-        Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 9000);
+        Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 9000, true);
         accountCreditCard.withdrawingMoney(500);
         /* 15 is value of tax for this type of transacion
         * */

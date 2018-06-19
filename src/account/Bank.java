@@ -3,13 +3,14 @@ package account;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bank {
+/*Bank class represents Subject
+  in Observable design pattern
+* */
+public class Bank implements Subject{
     private String name;
-    private List<Account> accounts;
 
-    public Bank(){
-        accounts = new ArrayList<>();
-    }
+    //list of observers
+    private final List<Account> accounts = new ArrayList<>();
 
     public Account openBankAccount(AccountType accountType, double balance){
         AccountFactory accountFactory = new AccountFactory(this);
@@ -17,32 +18,15 @@ public class Bank {
         return account;
     }
 
-
     public double depositingMoney(Account account, double amount){
-        System.out.println("Bank deposit money === ");
-        notifyAllObservers();
+        System.out.println("Deposit money from account: "+amount);
+        notifyObservers();
         return account.depositingMoney(amount);
     }
 
     public double  withdrawingMoney(Account account, double amount){
-        notifyAllObservers();
+        notifyObservers();
         return account.withdrawingMoney(amount);
-    }
-
-    /*Observer pattern*/
-    public void attach(Account observer){
-        accounts.add(observer);
-    }
-
-    /*Observer pattern
-    * to notify all observers (accounts)
-    * */
-    public void notifyAllObservers(){
-        System.out.println("Size accounts = "+ accounts.size());
-        for (Account observer : accounts) {
-            System.out.println("Account = "+observer.getBalance());
-            observer.update();
-        }
     }
 
     double checkingBalance(Account account){
@@ -55,6 +39,20 @@ public class Bank {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void registerObserver(Account observer) {
+        this.accounts.add(observer);
+    }
+
+    /*Observer pattern
+     * to notify all observers (accounts) using lambda expression
+     * */
+    @Override
+    public void notifyObservers() {
+        System.out.println("Notify observers (accounts) with size: "+ accounts.size());
+        accounts.forEach(o -> o.inform());
     }
 
     @Override

@@ -28,13 +28,13 @@ public class CreditCardDecorator extends AccountDecorator {
         return getBalance();
     }
 
-    @Override
-    public void update() {
-
-    }
-
     /*additional functionality*/
     int  setAdditionalProperty(){
         return 20;
+    }
+
+    @Override
+    public void inform() {
+
     }
 }

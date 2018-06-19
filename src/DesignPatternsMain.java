@@ -41,6 +41,5 @@ public class DesignPatternsMain {
         * */
         Account account5 = new CreditCardDecorator(new CreditCardAccount(bank, 8000));
         System.out.println(account5.getBalance());
-
     }
 }

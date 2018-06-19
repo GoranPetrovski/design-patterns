@@ -10,7 +10,7 @@ public class SavingsAccount extends  Account {
     public SavingsAccount(Bank bank, double balance){
         accountHelper = new AccountHelper();
         this.bank = bank;
-        this.bank.attach(this);
+        this.bank.registerObserver(this);
         setBalance(balance);
 
     }
@@ -34,7 +34,7 @@ public class SavingsAccount extends  Account {
     }
 
     @Override
-    public void update() {
+    public void inform() {
         System.out.println("Balance of saving amount was updated! and current value of balance is"+ getBalance());
     }
 }

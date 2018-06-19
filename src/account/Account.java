@@ -4,7 +4,7 @@ package account;
 I know that Account can be interface or class, because I like to implement Observer pattern
 and I must to have proerties like Bank .. I decide to go with class in this case
 * */
-public abstract class Account {
+public abstract class Account implements Observer{
     private String ownerIdentification;
     private double balance;
     protected Bank bank;
@@ -12,7 +12,6 @@ public abstract class Account {
     public abstract double depositingMoney(double amount);
     public abstract double withdrawingMoney(double amount);
     public abstract double checkBalance();
-    public abstract void update();
 
     public String getOwnerIdentification() {
         return ownerIdentification;
