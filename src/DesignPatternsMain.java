@@ -1,7 +1,4 @@
-import account.Account;
-import account.AccountFactory;
-import account.AccountType;
-import account.Bank;
+import account.*;
 import account.impl.CreditCardAccount;
 import account.impl.CreditCardDecorator;
 
@@ -13,12 +10,7 @@ public class DesignPatternsMain {
         Observer
         Factory
         Decorator
-
-        Observer design pattern. In this case
-            Bank class represents Subject
-            Account class represent Observer
         * */
-
 
         // create subject
         Bank bank = new Bank();
@@ -42,19 +34,19 @@ public class DesignPatternsMain {
 
         /* using lambda expression */
         System.out.println(" == observable pattern in combination with lambda expression ==");
+        AccountHelper accountHelper = new AccountHelper();
         bank.registerObserver((accountType) -> {
-            if(accountType == AccountType.CREDITCARD)
+            if(accountHelper.isCreditCardAccount(accountType))
                 System.out.println("Inform update credit card account");
         });
         bank.registerObserver((accountType) -> {
-            if(accountType == AccountType.SAVING)
+            if(accountHelper.isSavingAccount(accountType))
                  System.out.println("Inform update saving account");
         });
         bank.registerObserver((accountType) -> {
-            if(accountType == AccountType.CURRENT)
+            if(accountHelper.isCurrent(accountType))
                 System.out.println("Inform update current account");
         });
-
         bank.notifyObservers(AccountType.SAVING);
     }
 }

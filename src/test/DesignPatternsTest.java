@@ -11,6 +11,8 @@ public class DesignPatternsTest {
 
     Bank bank = new Bank();
     AccountFactory accountFactory = new AccountFactory(bank);
+    public static final double CREDIT_CARD_TAX = 15;
+    public static final double CURRENT_ACCOUNT_TAX = 25;
 
     @Test(expected = RuntimeException.class)
     public final void whenWithdrawMoneyFromLowerBalanceThenExceptionIsThrown(){
@@ -25,11 +27,38 @@ public class DesignPatternsTest {
     }
 
     @Test
-    public final void whenDepositingMoneyThen (){
+    public final void whenDepositingMoneyThenReturnCorrectBalance (){
+        Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 9000, true);
+        accountCreditCard.depositingMoney(500);
+        /* 15 is value of tax for this type of transacion
+        * */
+        Assert.assertEquals(9000.0 + 500 - CREDIT_CARD_TAX, accountCreditCard.checkBalance(), 0.0);
+    }
+
+    @Test
+    public final void whenWithdrawMoneyThenReturnCorrectBalance (){
         Account accountCreditCard = accountFactory.createAccount(AccountType.CREDITCARD, 9000, true);
         accountCreditCard.withdrawingMoney(500);
         /* 15 is value of tax for this type of transacion
-        * */
-        Assert.assertEquals(9000.0 - 500 -15, accountCreditCard.checkBalance(), 0.0);
+         * */
+        Assert.assertEquals(9000.0 - 500 - CREDIT_CARD_TAX, accountCreditCard.checkBalance(), 0.0);
+    }
+
+    @Test
+    public final void whenDepositingMoneyFromCurrentAccountThenReturnCorrectBalance (){
+        Account accountCreditCard = accountFactory.createAccount(AccountType.CURRENT, 9000, true);
+        accountCreditCard.depositingMoney(500);
+        /* 25 is value of tax for this type of transacion
+         * */
+        Assert.assertEquals(9000.0 + 500 - CURRENT_ACCOUNT_TAX, accountCreditCard.checkBalance(), 0.0);
+    }
+
+    @Test
+    public final void whenWithdrawMoneyFromCurrentAccountThenReturnCorrectBalance (){
+        Account accountCreditCard = accountFactory.createAccount(AccountType.CURRENT, 9000, true);
+        accountCreditCard.withdrawingMoney(500);
+        /* 25 is value of tax for this type of transacion
+         * */
+        Assert.assertEquals(9000.0 - 500 - CURRENT_ACCOUNT_TAX, accountCreditCard.checkBalance(), 0.0);
     }
 }

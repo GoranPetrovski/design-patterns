@@ -30,7 +30,7 @@ public class CurrentAccount extends  Account {
     @Override
     public double withdrawingMoney(double amount) {
         Double total = accountHelper.withdrawingMoney(getBalance(), amount, CURRENT_ACCOUNT_TAX);
-        setBalance(getBalance() - amount);
+        setBalance(getBalance() - amount - CURRENT_ACCOUNT_TAX);
         return getBalance();
     }
 
