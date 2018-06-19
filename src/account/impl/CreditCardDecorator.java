@@ -3,6 +3,7 @@ package account.impl;
 import account.Account;
 import account.AccountDecorator;
 import account.AccountHelper;
+import account.AccountType;
 
 /*
 implement decorator pattern and add additional tax for each bank transacion
@@ -34,7 +35,7 @@ public class CreditCardDecorator extends AccountDecorator {
     }
 
     @Override
-    public void inform() {
+    public void inform(AccountType accountType) {
 
     }
 }

@@ -4,8 +4,6 @@ import account.AccountType;
 import account.Bank;
 import account.impl.CreditCardAccount;
 import account.impl.CreditCardDecorator;
-import account.impl.CurrentAccount;
-import account.impl.SavingsAccount;
 
 public class DesignPatternsMain {
 
@@ -41,5 +39,22 @@ public class DesignPatternsMain {
         * */
         Account account5 = new CreditCardDecorator(new CreditCardAccount(bank, 8000));
         System.out.println(account5.getBalance());
+
+        /* using lambda expression */
+        System.out.println(" == observable pattern in combination with lambda expression ==");
+        bank.registerObserver((accountType) -> {
+            if(accountType == AccountType.CREDITCARD)
+                System.out.println("Inform update credit card account");
+        });
+        bank.registerObserver((accountType) -> {
+            if(accountType == AccountType.SAVING)
+                 System.out.println("Inform update saving account");
+        });
+        bank.registerObserver((accountType) -> {
+            if(accountType == AccountType.CURRENT)
+                System.out.println("Inform update current account");
+        });
+
+        bank.notifyObservers(AccountType.SAVING);
     }
 }

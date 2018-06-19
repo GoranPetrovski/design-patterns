@@ -2,6 +2,7 @@ package account.impl;
 
 import account.Account;
 import account.AccountHelper;
+import account.AccountType;
 import account.Bank;
 
 /*
@@ -38,7 +39,9 @@ public class CreditCardAccount extends Account {
     }
 
     @Override
-    public void inform() {
-        System.out.println("Balance of creadit card amount was updated! and current value of balance is: "+ getBalance());
+    public void inform(AccountType accountType) {
+        if(accountHelper.isCreditCardAccount(accountType)) {
+            System.out.println("Balance of creadit card amount was updated! and current value of balance is: " + getBalance());
+        }
     }
 }

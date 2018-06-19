@@ -2,6 +2,7 @@ package account.impl;
 
 import account.Account;
 import account.AccountHelper;
+import account.AccountType;
 import account.Bank;
 
 public class SavingsAccount extends  Account {
@@ -34,7 +35,9 @@ public class SavingsAccount extends  Account {
     }
 
     @Override
-    public void inform() {
-        System.out.println("Balance of saving amount was updated! and current value of balance is"+ getBalance());
+    public void inform(AccountType accountType) {
+        if(accountHelper.isSavingAccount(accountType)) {
+            System.out.println("Balance of saving amount was updated! and current value of balance is" + getBalance());
+        }
     }
 }

@@ -1,6 +1,6 @@
 package account;
 
 public interface Subject {
-    void registerObserver(Account observer);
-    void notifyObservers();
+    void registerObserver(Observer observer);
+    void notifyObservers(AccountType accountType);
 }

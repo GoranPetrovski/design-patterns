@@ -2,6 +2,7 @@ package account.impl;
 
 import account.Account;
 import account.AccountHelper;
+import account.AccountType;
 import account.Bank;
 
 /*
@@ -40,7 +41,9 @@ public class CurrentAccount extends  Account {
 
     /*This method is added to have Observer pattern */
     @Override
-    public void inform() {
-        System.out.println("Balance of current amount was updated! and current value of balance is"+ getBalance());
+    public void inform(AccountType accountType) {
+        if(accountHelper.isCurrent(accountType)) {
+            System.out.println("Balance of current amount was updated! and current value of balance is" + getBalance());
+        }
     }
 }

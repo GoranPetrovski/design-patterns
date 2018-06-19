@@ -1,5 +1,5 @@
 package account;
 
 public interface Observer {
-    void inform();
+    void inform(AccountType accountType);
 }

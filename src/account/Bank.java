@@ -10,7 +10,7 @@ public class Bank implements Subject{
     private String name;
 
     //list of observers
-    private final List<Account> accounts = new ArrayList<>();
+    private final List<Observer> accounts = new ArrayList<>();
 
     public Account openBankAccount(AccountType accountType, double balance){
         AccountFactory accountFactory = new AccountFactory(this);
@@ -20,12 +20,12 @@ public class Bank implements Subject{
 
     public double depositingMoney(Account account, double amount){
         System.out.println("Deposit money from account: "+amount);
-        notifyObservers();
+        notifyObservers(AccountType.CREDITCARD);
         return account.depositingMoney(amount);
     }
 
     public double  withdrawingMoney(Account account, double amount){
-        notifyObservers();
+        notifyObservers(AccountType.CREDITCARD);
         return account.withdrawingMoney(amount);
     }
 
@@ -42,7 +42,7 @@ public class Bank implements Subject{
     }
 
     @Override
-    public void registerObserver(Account observer) {
+    public void registerObserver(Observer observer) {
         this.accounts.add(observer);
     }
 
@@ -50,9 +50,9 @@ public class Bank implements Subject{
      * to notify all observers (accounts) using lambda expression
      * */
     @Override
-    public void notifyObservers() {
+    public void notifyObservers(AccountType accountType) {
         System.out.println("Notify observers (accounts) with size: "+ accounts.size());
-        accounts.forEach(o -> o.inform());
+        accounts.forEach(o -> o.inform(accountType));
     }
 
     @Override

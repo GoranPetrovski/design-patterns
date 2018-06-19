@@ -9,4 +9,16 @@ public class AccountHelper {
         }
         return total;
     }
+
+    public boolean isCreditCardAccount(AccountType accountType){
+        return accountType == AccountType.CREDITCARD;
+    }
+
+    public boolean isSavingAccount(AccountType accountType){
+        return accountType == AccountType.SAVING;
+    }
+
+    public boolean isCurrent(AccountType accountType){
+        return accountType == AccountType.CURRENT;
+    }
 }
