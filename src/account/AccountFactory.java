@@ -13,11 +13,17 @@ public class AccountFactory {
 
     /*To implement factory pattern without exposing the creation logic to the client
     * useing common interface*/
-    public Account createAccount(AccountType accountType, double balance) {
+    public Account createAccount(AccountType accountType, double balance, boolean improvedSoluton) {
         if (accountType == null) {
-            return null;
+            throw new RuntimeException(("account type can not be null"));
         }
-        switch (accountType) {
+        if(improvedSoluton)
+            return createAccountImprovedSolution(accountType, balance);
+        else return createAccountBasicSolution(accountType, balance);
+    }
+
+    public Account createAccountBasicSolution(AccountType accountType, double balance){
+        switch (accountType){
             case SAVING:
                 return new SavingsAccount(bank, balance);
             case CURRENT:
@@ -27,5 +33,9 @@ public class AccountFactory {
             default:
                 return null;
         }
+    }
+
+    public Account createAccountImprovedSolution(AccountType accountType, double balance) {
+        return accountType.getInstance(bank, balance);
     }
 }

@@ -13,7 +13,7 @@ public class Bank {
 
     public Account openBankAccount(AccountType accountType, double balance){
         AccountFactory accountFactory = new AccountFactory(this);
-        Account account = accountFactory.createAccount(accountType, balance);
+        Account account = accountFactory.createAccount(accountType, balance, true);
         return account;
     }
 
